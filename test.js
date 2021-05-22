@@ -156,6 +156,7 @@ clockHandsSec.style.left = svgCenterX - clockHandsSec.offsetWidth/2 + 'px';
 
 function update(){    
 var time = new Date;
+console.log(time.toLocaleTimeString());
 var hours = time.getHours();
       if (hours < 10) hours = '0' + hours;
       hoursDW.textContent = hours;
@@ -177,10 +178,9 @@ var m = 360/60 * minutes;
 var h =360/12 * (hours + minutes/60); 
 	    clockHandsHours.style.transform = "rotate(" + h + "deg)";
     }
-    function clockStart() {
-      timerId=setInterval(update, 1000);
+    function clockStart() {     
       update(); // <--  начать тут же, не ждать 1 секунду пока setInterval сработает     
     }   
- window.addEventListener('load', update);
-window.setInterval (clockStart, 1000);
+ window.addEventListener('load', clockStart);
+ window.setInterval (clockStart, 1000);
   
